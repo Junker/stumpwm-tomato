@@ -9,9 +9,9 @@
 (defparameter *work-period* 25
   "Amount of time in minutes of working before taking a break.")
 (defparameter *postpone-period* 10
-  "Amount of time in minutes of postpone break.")
+  "Amount of time in minutes to postpone the break.")
 (defparameter *max-tomatos* 4
-  "A long break will begin after *max-tomatos* pomodoros.")
+  "A long break will begin after *max-tomatos* tomatoes.")
 
 (defvar *idle-check-interval-secs* 5)
 (defvar *tomatos* 0
