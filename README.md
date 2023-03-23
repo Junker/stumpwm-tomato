@@ -34,7 +34,7 @@ git clone https://github.com/Junker/stumpwm-tomato tomato
 - **tomato:\*long-break-period\*** - Long break in minutes after *max-tomatos* short breaks.
 - **tomato:\*work-period\*** - Amount of time in minutes of working before taking a break.
 - **tomato:\*postpone-period\*** - Amount of time in minutes to postpone the break.
-- **tomato:\*max-tomatoes\*** - A long break will begin after *max-tomatos* tomatoes.
+- **tomato:\*max-tomatoes\*** - A long break will begin after *max-tomatoes* tomatoes.
 
 ## Modeline
 

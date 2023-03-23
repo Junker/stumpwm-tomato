@@ -5,16 +5,16 @@
 (defparameter *short-break-period* 5
   "Short break in minutes after almost every work period.")
 (defparameter *long-break-period* 15
-  "Long break in minutes after *max-tomatos* short breaks.")
+  "Long break in minutes after *max-tomatoes* short breaks.")
 (defparameter *work-period* 25
   "Amount of time in minutes of working before taking a break.")
 (defparameter *postpone-period* 10
   "Amount of time in minutes to postpone the break.")
-(defparameter *max-tomatos* 4
-  "A long break will begin after *max-tomatos* tomatoes.")
+(defparameter *max-tomatoes* 4
+  "A long break will begin after *max-tomatoes* tomatoes.")
 
 (defvar *idle-check-interval-secs* 5)
-(defvar *tomatos* 0
+(defvar *tomatoes* 0
   "The total number of pomodoros done so far.")
 (defvar *break-timer* (make-timer 'on-break-done :name 'work)
   "break timer object")
@@ -63,7 +63,7 @@
         (t nil)))
 
 (defun get-break-period ()
-  (if (and (> *tomatos* *max-tomatos*) (= (mod *tomatos* *max-tomatos*) 1))
+  (if (and (> *tomatoes* *max-tomatoes*) (= (mod *tomatoes* *max-tomatoes*) 1))
       *long-break-period*
       *short-break-period*))
 
@@ -105,7 +105,7 @@
   (start-work))
 
 (defun on-work-done ()
-  (incf *tomatos*)
+  (incf *tomatoes*)
   (setf *last-work-done-timestamp* (get-internal-real-time))
   (start-break))
 
