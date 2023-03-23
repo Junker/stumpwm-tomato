@@ -17,23 +17,24 @@ git clone https://github.com/Junker/stumpwm-tomato tomato
 ## Usage
 
 ```lisp
+  (tomato:init)
   (setf stumpwm:*screen-mode-line-format* "%t")
 ```
 
 ### Commands
 
-- tomato-work
-- tomato-break
-- tomato-postpone
-- tomato-status
+- **tomato-work** - start work
+- **tomato-break** - start break
+- **tomato-postpone** - postpone break
+- **tomato-status** - show tomato status
 
 ### Parameters
 
-- tomato:\*short-break-period\* - Short break in minutes after almost every work period.
-- tomato:\*long-break-period\* - Long break in minutes after *max-tomatos* short breaks.
-- tomato:\*work-period\* - Amount of time in minutes of working before taking a break.
-- tomato:\*postpone-period\* - Amount of time in minutes to postpone the break.
-- tomato:\*max-tomatoes\* - A long break will begin after *max-tomatos* tomatoes.
+- **tomato:\*short-break-period\*** - Short break in minutes after almost every work period.
+- **tomato:\*long-break-period\*** - Long break in minutes after *max-tomatos* short breaks.
+- **tomato:\*work-period\*** - Amount of time in minutes of working before taking a break.
+- **tomato:\*postpone-period\*** - Amount of time in minutes to postpone the break.
+- **tomato:\*max-tomatoes\*** - A long break will begin after *max-tomatos* tomatoes.
 
 ## Modeline
 
