@@ -8,6 +8,7 @@
                 #:make-timer
                 #:timer-scheduled-p)
   (:export #:modeline
+           #:init
            #:start-work
            #:start-break
            #:start-postpone

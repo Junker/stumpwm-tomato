@@ -144,6 +144,11 @@
 (when (fboundp 'stumpwm::register-ml-on-click-id) ;check in case of old stumpwm version
   (register-ml-on-click-id :ml-tomato-on-click #'ml-on-click))
 
+(defun init ()
+  (schedule-timer *work-timer* (min->sec *work-period*))
+  (schedule-timer *idle-timer* *idle-check-interval-secs*
+                  :repeat-interval *idle-check-interval-secs*))
+
 
 (defcommand tomato-work () ()
   (start-work))
@@ -163,6 +168,3 @@
 ;; formatters.
 (add-screen-mode-line-formatter #\t 'modeline)
 
-(schedule-timer *work-timer* (min->sec *work-period*))
-(schedule-timer *idle-timer* *idle-check-interval-secs*
-                :repeat-interval *idle-check-interval-secs*)
