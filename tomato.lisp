@@ -52,9 +52,9 @@
   (timer-scheduled-p *postpone-timer*))
 
 (defun get-state ()
-  (cond ((is-work) 'work)
-        ((is-break) 'break)
-        ((is-postpone) 'postpone)))
+  (cond ((is-work) :work)
+        ((is-break) :break)
+        ((is-postpone) :postpone)))
 
 (defun get-active-timer ()
   (cond ((is-work) *work-timer*)
