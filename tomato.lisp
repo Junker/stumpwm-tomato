@@ -79,6 +79,8 @@
 
 (defun start-work (&optional force)
   (when (or (not (is-work)) force)
+    (let ((*timeout-wait* 1))
+      (message "TOMATO: Start work"))
     (unschedule-timer *work-timer*)
     (unschedule-timer *break-timer*)
     (unschedule-timer *postpone-timer*)
@@ -95,6 +97,8 @@
 
 (defun start-postpone ()
   (when (is-break)
+    (let ((*timeout-wait* 1))
+      (message "TOMATO: Postpone break"))
     (unschedule-timer *break-timer*)
     (unschedule-timer *work-timer*)
     (schedule-timer *postpone-timer* (min->sec *postpone-period*))))
