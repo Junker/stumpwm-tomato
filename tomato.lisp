@@ -24,7 +24,7 @@
   "postpone timer object")
 (defvar *idle-timer* (make-timer 'idle-check :name 'idle :thread t)
   "postpone timer object")
-(defvar *last-work-done-timestamp* nil
+(defvar *last-work-done-timestamp* (get-internal-real-time)
   "time when last work-timer fired")
 
 (defun min->sec (minutes)
@@ -106,6 +106,7 @@
 
 (defun on-break-done ()
   (message "TOMATO: Break Finished!")
+  (setf *last-work-done-timestamp* (get-internal-real-time))
   (start-work))
 
 (defun on-work-done ()
