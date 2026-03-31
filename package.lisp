@@ -17,4 +17,5 @@
            #:*long-break-period*
            #:*work-period*
            #:*postpone-period*
-           #:*max-tomatos*))
+           #:*max-tomatos*
+           #:*do-not-disturb-classes*))

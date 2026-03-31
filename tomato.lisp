@@ -12,6 +12,8 @@
   "Amount of time in minutes to postpone the break.")
 (defparameter *max-tomatoes* 4
   "A long break will begin after *max-tomatoes* tomatoes.")
+(defparameter *do-not-disturb-classes* '()
+  "List of window classes where messages should not be displayed.")
 
 (defvar *idle-check-interval-secs* 5)
 (defvar *tomatoes* 0
@@ -26,6 +28,14 @@
   "postpone timer object")
 (defvar *last-work-done-timestamp* (get-internal-real-time)
   "time when last work-timer fired")
+
+(defun tomato-message (msg)
+  "Display a message unless current window is in do-not-disturb list."
+  (let ((window (current-window)))
+    (unless (and window
+                 (member (window-class window) *do-not-disturb-classes*
+                         :test #'string=))
+      (message msg))))
 
 (defun min->sec (minutes)
   "Converts from minutes to seconds."
@@ -80,7 +90,7 @@
 (defun start-work (&optional force)
   (when (or (not (is-work)) force)
     (let ((*timeout-wait* 1))
-      (message "TOMATO: Start work"))
+      (tomato-message "TOMATO: Start work"))
     (unschedule-timer *work-timer*)
     (unschedule-timer *break-timer*)
     (unschedule-timer *postpone-timer*)
@@ -89,7 +99,7 @@
 (defun start-break (&optional force)
   (when (or (not (is-break)) force)
     (let ((*suppress-echo-timeout* t))
-      (message "TOMATO: BREAK IN PROCESS..."))
+      (tomato-message "TOMATO: BREAK IN PROCESS..."))
     (unschedule-timer *work-timer*)
     (unschedule-timer *postpone-timer*)
     (unschedule-timer *break-timer*)
@@ -98,14 +108,14 @@
 (defun start-postpone ()
   (when (is-break)
     (let ((*timeout-wait* 1))
-      (message "TOMATO: Postpone break"))
+      (tomato-message "TOMATO: Postpone break"))
     (unschedule-timer *break-timer*)
     (unschedule-timer *work-timer*)
     (schedule-timer *postpone-timer* (min->sec *postpone-period*))))
 
 
 (defun on-break-done ()
-  (message "TOMATO: Break Finished!")
+  (tomato-message "TOMATO: Break Finished!")
   (setf *last-work-done-timestamp* (get-internal-real-time))
   (start-work))
 

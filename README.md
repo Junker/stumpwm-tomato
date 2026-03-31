@@ -35,6 +35,7 @@ git clone https://github.com/Junker/stumpwm-tomato tomato
 - `tomato:*work-period*` - Amount of time in minutes of working before taking a break.
 - `tomato:*postpone-period*` - Amount of time in minutes to postpone the break.
 - `tomato:*max-tomatoes*` - A long break will begin after *max-tomatoes* tomatoes.
+- `tomato:*do-not-disturb-classes*` - List of window classes where messages should not be displayed.
 
 ## Modeline
 
